@@ -53,4 +53,14 @@ Transformer.py
     → FeedForward → 残差相加 → LayerNorm                             (norm3)       
   - Masked Self-Attention：用 tgt_mask 防止当前位置"偷看"未来的词
 
+BPE.py
+这是 BPE 子词分词算法的核心演示，用于将单词拆分为更小的子词单元。
+原始词表 → 统计相邻符号对频率 → 合并最高频词对 → 更新词表 → 重复 N 次
+  get_stats(vocab)（第3-10行）
+  统计当前词表中所有相邻符号对的出现频率。符号之间用空格分隔，遍历每个词中相邻的两 
+  个符号，累加它们的频率。
+
+  merge_vocab(pair, v_in)（第12-20行）
+  将指定的符号对合并为一个整体。用正则匹配词中独立的 a
+  b（两边是空格或边界），替换为 ab。
   
